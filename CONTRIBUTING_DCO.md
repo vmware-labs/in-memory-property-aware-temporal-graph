@@ -42,11 +42,11 @@ Before submitting your pull request, we advise you to use the following:
 1. Check if your code changes will pass both code linting checks and unit tests.
 2. Ensure your commit messages are descriptive. We follow the conventions on [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/). Be sure to include any related GitHub issue references in the commit message. See [GFM syntax](https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown) for referencing issues and commits.
 3. Check the commits and commits messages and ensure they are free from typos.
-4. If you are making changes in the core data structure, please include jmh memory and cpu benchmark report pre and post your change.
+4. If you are making changes in the core data structure, please include **jmh** memory and cpu benchmark report pre and post your change.
 
 
 ## Reporting Bugs and Creating Issues
 
-While creatin gan issue, please try to follow commint message format mentioned in step 2 of "Pull Request Checklist"
+While creating an issue, please try to follow commit message format mentioned in step 2 of "**Pull Request Checklist**"
 
 

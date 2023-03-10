@@ -1,4 +1,9 @@
-# Ignore everything in this directory
-*
-# Except this file
-!.gitignore
+# IntelliJ projects
+.idea
+# Mac system files
+.DS_store
+# Intermittent build files
+build/
+# gradle directories
+.gradle/
+gradle/

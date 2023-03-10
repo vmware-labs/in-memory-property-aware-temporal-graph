@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    // Gradle JMH plugin - https://github.com/melix/jmh-gradle-plugin
+    id "me.champeau.jmh" version "0.6.8"
+}
+
+group 'com.vmware'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+    implementation 'org.mockito:mockito-all:1.10.19'
+    implementation group: 'com.google.guava', name: 'guava', version: '11.0.2'
+
+    // fastutil dependencies
+    implementation group: 'it.unimi.dsi', name: 'fastutil', version: '8.2.1'
+
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.junit.platform:junit-platform-jfr:1.8.2'
+    testImplementation group: 'it.unimi.dsi', name: 'fastutil', version: '8.2.1'
+    testImplementation 'org.openjdk.jol:jol-core:0.16'
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    // required by IntelliJ JMH plugin
+    jmhAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.35'
+}
+
+test {
+    useJUnitPlatform()
+    maxHeapSize = "4096m"
+    //jvmArgs =  ['-XX:+HeapDumpOnOutOfMemoryError', '-XX:HeapDumpPath=/tmp/heapdump.hprof', '-XX:StartFlightRecording=path-to-gc-roots=true,dumponexit=true,filename=/tmp/samplerecord.jfr,disk=true']
+    jvmArgs =  ['-XX:+HeapDumpOnOutOfMemoryError', '-XX:HeapDumpPath=/tmp/heapdump.hprof', '-agentpath:/Applications/YourKit-Java-Profiler-2022.3.app/Contents/Resources/bin/mac/libyjpagent.dylib=disablestacktelemetry,exceptions=disable,delay=10000']
+    systemProperty("resolutionMins", "30")
+}
+
+jmh {
+    profilers = ["comp", "gc"]
+}
